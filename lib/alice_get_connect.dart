@@ -137,6 +137,8 @@ class AliceGetConnect implements BaseInterceptor {
     httpResponse.headers = headers;
 
     _aliceCore.addResponse(httpResponse, request.id);
+
+    return response;
   }
 
   AliceHttpCall? _selectCall(int requestId) {
