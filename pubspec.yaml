@@ -1,5 +1,5 @@
 name: alice_get_connect
-description: A Flutter library that facilitates seamless integration between the get_connect and flutter_alice.
+description: A Flutter library that enables seamless integration between flutter_alice, and get_connect from GetX.
 version: 1.0.0
 homepage: https://github.com/teknologicakrainternasional/alice_get_connect
 
