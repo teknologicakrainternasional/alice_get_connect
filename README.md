@@ -1,39 +1,52 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+**AliceGetConnect** is a Flutter library that enables seamless integration 
+between the HTTP Inspector library 
+[flutter_alice](https://pub.dev/packages/flutter_alice), 
+and the HTTP Networking library get_connect from [GetX](https://pub.dev/packages/get).
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Detailed logs for each HTTP call (HTTP Request, HTTP Response)
+- Inspector UI for viewing HTTP calls
+- Statistics tracking
+- Error handling capabilities
+- HTTP call search functionality
+- Bubble overlay entry support
+- Support for GetConnect from GetX
+- Handle connection timeout
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+1. Create AliceGetConnect instance
+```dart
+AliceGetConnect alice = AliceGetConnect();
+```
+Since GetConnect does not have a callback for handling connection timeouts, AliceGetConnect will by default consider a request timeout if it exceeds 30 seconds. You can also set the timeout by configuring the time parameters at initialization
+```dart
+AliceGetConnect alice = AliceGetConnect(
+  timeout: const Duration(seconds: 60)
+);
+```
+You can also use it to set the timeout in getConnect
+```dart
+httpClient.timeout = alice.timeout;
+```
+2. Add navigator key to GetMaterialApp
+```dart
+GetMaterialApp(navigatorKey: alice.getNavigatorKey(), home: ...);
+```
+You need to add this navigator key in order to show inspector UI. You can use also your navigator key in Alice:
+```dart
+AliceGetConnect(navigatorKey: _navKey);
+```
+3. Add [OverlaySupport](https://pub.dev/packages/overlay_support) in GetMaterialApp
+
+because AliceGetConnect uses bubble overlay, add OverlaySupport in GetMaterialApp
 
 ```dart
-const like = 'sample';
+OverlaySupport.global(child: GetMaterialApp(...));
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+4. Add Request & Response Modifier
+```dart
+httpClient.addRequestModifier(alice.requestInterceptor);
+httpClient.addResponseModifier(alice.responseInterceptor);
+```
