@@ -1,0 +1,21 @@
+name: alice_get_connect
+description: A Flutter library that facilitates seamless integration between the get_connect and flutter_alice.
+version: 1.0.0
+homepage: https://github.com/teknologicakrainternasional/alice_get_connect
+
+environment:
+  sdk: ">=2.15.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_alice: ^1.1.1
+  get: ^4.6.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
