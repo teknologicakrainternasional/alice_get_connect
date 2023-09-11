@@ -42,7 +42,7 @@ class AliceGetConnect implements BaseInterceptor {
     this.showInspectorOnShake = false,
     this.darkTheme = false,
     this.notificationIcon = "@mipmap/ic_launcher",
-    this.timeout = const Duration(seconds: 8),
+    this.timeout = const Duration(seconds: 30),
   }) {
     _navigatorKey = navigatorKey ?? GlobalKey<NavigatorState>();
     _aliceCore = AliceCore(
